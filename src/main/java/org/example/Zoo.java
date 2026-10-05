@@ -34,4 +34,20 @@ public class Zoo {
         animalCount++;                       // move the counter forward
         return true;
     }
+
+    public void displayAnimals() {
+        System.out.println("Animals in " + name + ":");
+        for (int i = 0; i < animalCount; i++) {
+            System.out.println("  [" + i + "] " + animals[i]);
+        }
+    }
+
+    public int searchAnimal(Animal animal) {
+        for (int i = 0; i < animalCount; i++) {
+            if (animals[i].name.equals(animal.name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
