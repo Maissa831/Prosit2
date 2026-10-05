@@ -3,6 +3,7 @@ public class Zoo {
     String name;
     String city;
     int nbrCages;
+    int animalCount = 0;
 
     public Zoo() {
     }
@@ -23,5 +24,14 @@ public class Zoo {
     @Override
     public String toString() {
         return "Zoo{name='" + name + "', city='" + city + "', nbrCages=" + nbrCages + "}";
+    }
+
+    public boolean addAnimal(Animal animal) {
+        if (animalCount >= animals.length) {
+            return false;                    // no free cage
+        }
+        animals[animalCount] = animal;       // put the animal in the next free cell
+        animalCount++;                       // move the counter forward
+        return true;
     }
 }
