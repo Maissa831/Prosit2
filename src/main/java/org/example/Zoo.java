@@ -1,4 +1,5 @@
 public class Zoo {
+    static final int MAX_ANIMALS = 25;
     Animal[] animals;
     String name;
     String city;
@@ -27,11 +28,17 @@ public class Zoo {
     }
 
     public boolean addAnimal(Animal animal) {
-        if (animalCount >= animals.length) {
-            return false;                    // no free cage
+        if (animal == null) {
+            return false;                                  // nothing to add
         }
-        animals[animalCount] = animal;       // put the animal in the next free cell
-        animalCount++;                       // move the counter forward
+        if (animalCount >= MAX_ANIMALS || animalCount >= animals.length) {
+            return false;                                  // zoo is full
+        }
+        if (searchAnimal(animal) != -1) {
+            return false;                                  // animal already in the zoo
+        }
+        animals[animalCount] = animal;
+        animalCount++;
         return true;
     }
 
