@@ -5,20 +5,20 @@ public class Main {
         Animal penguin = new Animal("Spheniscidae", "Pingu", 4, false);
         Animal giraffe = new Animal("Giraffidae", "Melman", 6, true);
         Animal panda = new Animal("Ursidae", "Po", 8, true);
-        Animal elephantCopy = new Animal("Elephantidae", "Dumbo", 10, true);
 
         Zoo myZoo = new Zoo("Safari Park", "Sousse", 3);
 
-        // Rule 1: no duplicates
-        System.out.println("Add elephant     : " + myZoo.addAnimal(elephant));
-        System.out.println("Add elephant again: " + myZoo.addAnimal(elephant));
-        System.out.println("Add elephantCopy  : " + myZoo.addAnimal(elephantCopy));
+        myZoo.addAnimal(elephant);
+        myZoo.addAnimal(penguin);
+        myZoo.addAnimal(giraffe);
+        myZoo.displayAnimals();
 
-        // Rule 2: no more than the capacity
-        System.out.println("Add penguin       : " + myZoo.addAnimal(penguin));
-        System.out.println("Add giraffe       : " + myZoo.addAnimal(giraffe));
-        System.out.println("Add panda         : " + myZoo.addAnimal(panda));
+        System.out.println("Remove elephant      : " + myZoo.removeAnimal(elephant));
+        System.out.println("Remove elephant again: " + myZoo.removeAnimal(elephant));
+        myZoo.displayAnimals();
 
+        // A cage is free again, so the panda can now be added
+        System.out.println("Add panda             : " + myZoo.addAnimal(panda));
         myZoo.displayAnimals();
     }
 }

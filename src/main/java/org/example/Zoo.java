@@ -57,4 +57,17 @@ public class Zoo {
         }
         return -1;
     }
+
+    public boolean removeAnimal(Animal animal) {
+        int index = searchAnimal(animal);
+        if (index == -1) {
+            return false;                          // animal not in the zoo
+        }
+        for (int i = index; i < animalCount - 1; i++) {
+            animals[i] = animals[i + 1];           // shift left
+        }
+        animals[animalCount - 1] = null;           // clear the last used cell
+        animalCount--;
+        return true;
+    }
 }
