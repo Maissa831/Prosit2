@@ -3,17 +3,29 @@ public class Zoo {
     Animal[] animals;
     String name;
     String city;
-    int nbrCages;
+    static final int nbrCages=25;
     int animalCount = 0;
 
     public Zoo() {
     }
 
-    public Zoo(String name, String city, int nbrCages) {
+    public Zoo(String name, String city) {
         animals = new Animal[nbrCages];
         this.name = name;
         this.city = city;
-        this.nbrCages = nbrCages;
+    }
+
+    public boolean isZooFull() {  //15
+        return animalCount >= MAX_ANIMALS || animalCount >= nbrCages;
+    }
+
+    // 16
+    public static Zoo compareZoo(Zoo z1, Zoo z2) {
+        if (z1.animalCount >= z2.animalCount) {
+            return z1;
+        } else {
+            return z2;
+        }
     }
 
     public void displayZoo() {
@@ -29,13 +41,13 @@ public class Zoo {
 
     public boolean addAnimal(Animal animal) {
         if (animal == null) {
-            return false;                                  // nothing to add
+            return false;
         }
-        if (animalCount >= MAX_ANIMALS || animalCount >= animals.length) {
-            return false;                                  // zoo is full
+        if (isZooFull()) {
+            return false;
         }
         if (searchAnimal(animal) != -1) {
-            return false;                                  // animal already in the zoo
+            return false;
         }
         animals[animalCount] = animal;
         animalCount++;
