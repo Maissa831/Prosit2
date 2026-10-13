@@ -1,3 +1,7 @@
+package tn.esprit.gestionzoo.main;
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -20,6 +24,9 @@ public class Main {
         System.out.println("Remove elephant again: " + myZoo.removeAnimal(elephant));
 
         System.out.println("Is myZoo full? " + myZoo.isZooFull());
-        System.out.println("Bigger zoo: " + Zoo.compareZoo(myZoo, zoo2).name);
+        System.out.println("Bigger zoo: " + Zoo.compareZoo(myZoo, zoo2).getName());
+
+        elephant.setAge(-5);
+        myZoo.setName("");
     }
 }
