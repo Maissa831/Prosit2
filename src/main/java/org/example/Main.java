@@ -1,7 +1,7 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.Animal;
-import tn.esprit.gestionzoo.entities.Aquatic;
+
 import tn.esprit.gestionzoo.entities.Dolphin;
 import tn.esprit.gestionzoo.entities.Penguin;
 import tn.esprit.gestionzoo.entities.Terrestrial;
@@ -34,23 +34,39 @@ public class Main {
         elephant.setAge(-5);
         myZoo.setName("");
 
-        Aquatic aquatic = new Aquatic();
+
         Terrestrial terrestrial = new Terrestrial();
         Dolphin dolphin = new Dolphin();
         Penguin penguin = new Penguin();
 
-        Aquatic aquatic2 = new Aquatic("Generic", "Aqua", 3, false, "Lake");
+
         Terrestrial terrestrial2 = new Terrestrial("Felidae", "Leo", 5, true, 4);
         Dolphin dolphin2 = new Dolphin("Delphinidae", "Flipper", 8, true, "Ocean", 35.5f);
         Penguin penguin2 = new Penguin("Spheniscidae", "Pingu", 4, false, "Antarctic", 120.0f);
 
-        System.out.println(aquatic2);
+
         System.out.println(terrestrial2);
         System.out.println(dolphin2);
         System.out.println(penguin2);
 
-        aquatic2.swim();
-        dolphin2.swim();
-        penguin2.swim();
+        myZoo.addAquaticAnimal(dolphin2);
+        myZoo.addAquaticAnimal(penguin2);
+
+
+        for (int i = 0; i < myZoo.getAquaticCount(); i++) {
+            myZoo.getAquaticAnimals()[i].swim();
+        }
+        Penguin penguin3 = new Penguin("Spheniscidae", "Skipper", 6, false, "Antarctic", 200.0f);
+        myZoo.addAquaticAnimal(penguin3);
+        System.out.println("Max penguin depth: " + myZoo.maxPenguinSwimmingDepth());
+        myZoo.displayNumberOfAquaticsByType();
+
+        Dolphin d1 = new Dolphin("Delphinidae", "Flipper", 8, true, "Ocean", 35.5f);
+        Dolphin d2 = new Dolphin("Delphinidae", "Flipper", 8, true, "Ocean", 40f);
+        Penguin p1 = new Penguin("Spheniscidae", "Flipper", 8, false, "Ocean", 100f);
+
+        System.out.println(d1.equals(d2));
+        System.out.println(d1 == d2);
+        System.out.println(d1.equals(dolphin2));
     }
 }

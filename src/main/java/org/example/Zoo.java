@@ -8,6 +8,10 @@ public class Zoo {
     private String city;
     private int animalCount = 0;
 
+    private static final int MAX_AQUATICS = 10;
+    private Aquatic[] aquaticAnimals = new Aquatic[MAX_AQUATICS];
+    private int aquaticCount = 0;
+
     public Zoo() {
     }
 
@@ -39,9 +43,16 @@ public class Zoo {
     public Animal[] getAnimals() {
         return animals; }
 
+    public Aquatic[] getAquaticAnimals() {
+        return aquaticAnimals; }
+    public int getAquaticCount() {
+        return aquaticCount; }
+
     public boolean isZooFull() {
         return animalCount >= MAX_ANIMALS || animalCount >= nbrCages;
     }
+
+
 
     public static Zoo compareZoo(Zoo z1, Zoo z2) {
         if (z1.animalCount >= z2.animalCount) {
@@ -104,5 +115,44 @@ public class Zoo {
         animals[animalCount - 1] = null;
         animalCount--;
         return true;
+    }
+
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (aquatic == null) {
+            return;
+        }
+        if (aquaticCount >= MAX_AQUATICS) {
+            System.out.println("No more room for aquatic animals.");
+            return;
+        }
+        aquaticAnimals[aquaticCount] = aquatic;
+        aquaticCount++;
+    }
+
+    public float maxPenguinSwimmingDepth() {
+        float max = 0;
+        for (int i = 0; i < aquaticCount; i++) {
+            if (aquaticAnimals[i] instanceof Penguin) {
+                Penguin p = (Penguin) aquaticAnimals[i];
+                if (p.getSwimmingDepth() > max) {
+                    max = p.getSwimmingDepth();
+                }
+            }
+        }
+        return max;
+    }
+
+    public void displayNumberOfAquaticsByType() {
+        int dolphins = 0;
+        int penguins = 0;
+        for (int i = 0; i < aquaticCount; i++) {
+            if (aquaticAnimals[i] instanceof Dolphin) {
+                dolphins++;
+            } else if (aquaticAnimals[i] instanceof Penguin) {
+                penguins++;
+            }
+        }
+        System.out.println("Dolphins: " + dolphins);
+        System.out.println("Penguins: " + penguins);
     }
 }
